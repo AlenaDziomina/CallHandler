@@ -2,11 +2,10 @@ package by.grouk.callhandler.utils.task;
 
 import java.util.concurrent.RecursiveAction;
 
-import javax.annotation.Resource;
-
+import by.grouk.callhandler.model.MessageTemplate;
 import by.grouk.callhandler.model.PhoneCall;
 import by.grouk.callhandler.utils.template.PhoneCallTemplateUtil;
-import by.grouk.callhandler.utils.template.generator.TemplateCode;
+import by.grouk.callhandler.utils.template.TemplateGeneratorFactory;
 import by.grouk.callhandler.utils.template.generator.TemplateGenerator;
 
 /**
@@ -16,17 +15,14 @@ public class AddPhoneCallTask extends RecursiveAction {
 
     private PhoneCall phoneCall;
 
-    @Resource
-    @TemplateCode(1)
-    TemplateGenerator templateGenerator;
-
     public AddPhoneCallTask(PhoneCall phoneCall) {
         this.phoneCall = phoneCall;
     }
 
     @Override protected void compute() {
         int templateCode = PhoneCallTemplateUtil.determineTemplateCode();
-        templateGenerator.generateTemplate(phoneCall);
+        TemplateGenerator templateGenerator = new TemplateGeneratorFactory().getTemplateGenerator();
+        MessageTemplate template = templateGenerator.generateTemplate(phoneCall);
         //todo
     }
 }
