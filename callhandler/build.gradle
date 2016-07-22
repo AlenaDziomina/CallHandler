@@ -47,5 +47,6 @@ project(':service'){
 project(':dao'){
     dependencies{
         compile project(':model')
+        compile project(':utils')
     }
 }

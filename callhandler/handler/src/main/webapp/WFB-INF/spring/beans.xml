@@ -9,4 +9,6 @@
 
     <context:component-scan base-package="by.grouk.callhandler"/>
 
+    <bean id="forkJoinPool" class="java.util.concurrent.ForkJoinPool"/>
+
 </beans>
