@@ -28,19 +28,29 @@ project(':handler'){
 
 project(':soap'){
     dependencies{
-        compile project(':dao')
-        compile project(':model')
+        compile project(':service')
     }
 }
 
 project(':rest'){
     dependencies{
-        compile project(':dao')
-        compile project(':model')
+        compile project(':service')
     }
 }
 
 project(':utils'){
+    dependencies{
+        compile project(':model')
+    }
+}
+
+project(':service'){
+    dependencies{
+        compile project(':dao')
+    }
+}
+
+project(':dao'){
     dependencies{
         compile project(':model')
     }

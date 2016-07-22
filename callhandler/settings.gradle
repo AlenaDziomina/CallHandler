@@ -5,4 +5,5 @@ include 'utils'
 include 'rest'
 include 'soap'
 include 'handler'
+include 'service'
 
