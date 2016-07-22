@@ -3,12 +3,55 @@ version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
 
-sourceCompatibility = 1.5
-
 repositories {
     mavenCentral()
 }
 
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.11'
+subprojects {
+    apply plugin: 'java'
+    repositories {
+        mavenCentral()
+
+        dependencies {
+
+        }
+    }
+}
+
+project(':handler'){
+    dependencies {
+        compile project(':soap')
+        compile project(':rest')
+        compile project(':utils')
+    }
+}
+
+project(':soap'){
+    dependencies{
+        compile project(':service')
+    }
+}
+
+project(':rest'){
+    dependencies{
+        compile project(':service')
+    }
+}
+
+project(':utils'){
+    dependencies{
+        compile project(':model')
+    }
+}
+
+project(':service'){
+    dependencies{
+        compile project(':dao')
+    }
+}
+
+project(':dao'){
+    dependencies{
+        compile project(':model')
+    }
 }
