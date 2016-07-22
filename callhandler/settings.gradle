@@ -1,2 +1,8 @@
 rootProject.name = 'callhandler'
+include 'dao'
+include 'model'
+include 'utils'
+include 'rest'
+include 'soap'
+include 'handler'
 
