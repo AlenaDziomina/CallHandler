@@ -1,6 +1,8 @@
 package by.grouk.callhandler.utils.template;
 
-import javax.annotation.Resource;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 import by.grouk.callhandler.utils.template.generator.TemplateCode;
 import by.grouk.callhandler.utils.template.generator.TemplateGenerator;
@@ -10,7 +12,10 @@ import by.grouk.callhandler.utils.template.generator.TemplateGenerator;
  */
 public class TemplateGeneratorFactory {
 
-    @Resource
+    @Autowired
+    private List<TemplateGenerator> generators;
+
+    @Autowired
     @TemplateCode(1)
     TemplateGenerator templateGenerator;
 
