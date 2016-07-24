@@ -7,4 +7,6 @@ import by.grouk.callhandler.model.PhoneCall;
  */
 public interface PhoneCallService {
     void addCall(PhoneCall call);
+
+    PhoneCall createPhoneCall();
 }

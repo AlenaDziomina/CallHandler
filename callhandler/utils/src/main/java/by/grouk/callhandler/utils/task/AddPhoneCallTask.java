@@ -21,7 +21,7 @@ public class AddPhoneCallTask extends RecursiveAction {
 
     @Override protected void compute() {
         int templateCode = PhoneCallTemplateUtil.determineTemplateCode();
-        TemplateGenerator templateGenerator = new TemplateGeneratorFactory().getTemplateGenerator();
+        TemplateGenerator templateGenerator = new TemplateGeneratorFactory().getTemplateGenerator(templateCode);
         MessageTemplate template = templateGenerator.generateTemplate(phoneCall);
         //todo
     }

@@ -1,5 +1,7 @@
 package by.grouk.callhandler.service.impl;
 
+import java.util.Date;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -19,5 +21,15 @@ public class PhoneCallServiceImpl implements PhoneCallService {
 
     public void addCall(PhoneCall call) {
         phoneCallDao.addCall(call);
+    }
+
+    @Override
+    public PhoneCall createPhoneCall() {
+        PhoneCall phoneCall = new PhoneCall();
+        phoneCall.setFirstName("firstName");
+        phoneCall.setLastName("lastName");
+        phoneCall.setPhoneNumber("555-55-55");
+        phoneCall.setCallDate(new Date());
+        return phoneCall;
     }
 }
