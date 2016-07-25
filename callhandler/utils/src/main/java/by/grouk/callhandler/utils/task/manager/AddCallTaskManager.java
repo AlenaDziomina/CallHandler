@@ -2,6 +2,7 @@ package by.grouk.callhandler.utils.task.manager;
 
 import java.util.concurrent.ForkJoinPool;
 
+import org.springframework.beans.factory.annotation.Lookup;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -17,11 +18,13 @@ public class AddCallTaskManager {
     @Autowired
     private ForkJoinPool pool;
 
-    @Autowired
-    private AddPhoneCallTask callTask;
+    @Lookup
+    public AddPhoneCallTask getAddCallTask(PhoneCall call){
+        return new AddPhoneCallTask(call);
+    }
 
     public void runTask(PhoneCall call) {
-        AddPhoneCallTask addCallTask = new AddPhoneCallTask(call);
+        AddPhoneCallTask addCallTask = getAddCallTask(call);
         pool.execute(addCallTask);
     }
 }

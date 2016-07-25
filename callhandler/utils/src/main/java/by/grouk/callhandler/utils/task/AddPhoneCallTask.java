@@ -4,6 +4,7 @@ import java.util.concurrent.RecursiveAction;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 
 import by.grouk.callhandler.model.MessageTemplate;
@@ -16,7 +17,7 @@ import by.grouk.callhandler.utils.template.generator.TemplateGenerator;
  * Created by Alena_Grouk on 7/22/2016.
  */
 @Component
-@Scope("prototype")
+@Scope(value="prototype", proxyMode = ScopedProxyMode.INTERFACES)
 public class AddPhoneCallTask extends RecursiveAction {
 
     @Autowired
@@ -26,7 +27,6 @@ public class AddPhoneCallTask extends RecursiveAction {
     private PhoneCallTemplateUtil templateUtil;
 
     private PhoneCall phoneCall;
-
 
     public AddPhoneCallTask(PhoneCall phoneCall) {
         this.phoneCall = phoneCall;
