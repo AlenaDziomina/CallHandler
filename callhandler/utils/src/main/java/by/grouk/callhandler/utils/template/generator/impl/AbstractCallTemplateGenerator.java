@@ -5,6 +5,7 @@ import by.grouk.callhandler.model.Destination;
 import by.grouk.callhandler.model.MessageTemplate;
 import by.grouk.callhandler.model.PhoneCall;
 import by.grouk.callhandler.utils.template.TemplateConstants;
+import by.grouk.callhandler.utils.template.generator.TemplateCode;
 import by.grouk.callhandler.utils.template.generator.TemplateGenerator;
 
 /**
@@ -13,6 +14,11 @@ import by.grouk.callhandler.utils.template.generator.TemplateGenerator;
 public abstract class AbstractCallTemplateGenerator implements TemplateGenerator<PhoneCall> {
 
     abstract protected Content defineContent(PhoneCall phoneCall);
+
+    @Override
+    public int getTemplateCode(){
+        return getClass().getAnnotation(TemplateCode.class).value();
+    }
 
     @Override
     public MessageTemplate generateTemplate(PhoneCall phoneCall) {

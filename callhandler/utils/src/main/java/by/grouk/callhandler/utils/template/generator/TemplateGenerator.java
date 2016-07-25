@@ -9,8 +9,6 @@ public interface TemplateGenerator<T> {
 
     MessageTemplate generateTemplate(T object);
 
-    default int getTemplateCode(){
-        return this.getClass().getAnnotation(TemplateCode.class).value();
-    }
+    int getTemplateCode();
 
 }

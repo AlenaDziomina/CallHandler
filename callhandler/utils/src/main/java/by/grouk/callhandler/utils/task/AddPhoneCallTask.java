@@ -4,8 +4,6 @@ import java.util.concurrent.RecursiveAction;
 
 import by.grouk.callhandler.model.MessageTemplate;
 import by.grouk.callhandler.model.PhoneCall;
-import by.grouk.callhandler.utils.template.PhoneCallTemplateUtil;
-import by.grouk.callhandler.utils.template.TemplateGeneratorFactory;
 import by.grouk.callhandler.utils.template.generator.TemplateGenerator;
 
 /**
@@ -14,14 +12,14 @@ import by.grouk.callhandler.utils.template.generator.TemplateGenerator;
 public class AddPhoneCallTask extends RecursiveAction {
 
     private PhoneCall phoneCall;
+    private TemplateGenerator templateGenerator;
 
-    public AddPhoneCallTask(PhoneCall phoneCall) {
+    public AddPhoneCallTask(PhoneCall phoneCall, TemplateGenerator templateGenerator) {
         this.phoneCall = phoneCall;
+        this.templateGenerator = templateGenerator;
     }
 
     @Override protected void compute() {
-        int templateCode = PhoneCallTemplateUtil.determineTemplateCode();
-        TemplateGenerator templateGenerator = new TemplateGeneratorFactory().getTemplateGenerator(templateCode);
         MessageTemplate template = templateGenerator.generateTemplate(phoneCall);
         //todo
     }

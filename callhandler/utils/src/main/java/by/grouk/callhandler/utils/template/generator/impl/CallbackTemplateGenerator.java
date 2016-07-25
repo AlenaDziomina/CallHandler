@@ -12,7 +12,7 @@ import by.grouk.callhandler.utils.template.generator.TemplateCode;
  */
 
 @Component
-@TemplateCode(2)
+@TemplateCode(1)
 public class CallbackTemplateGenerator extends AbstractCallTemplateGenerator {
 
     @Override

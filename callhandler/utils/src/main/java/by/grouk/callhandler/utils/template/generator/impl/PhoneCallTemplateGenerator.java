@@ -11,7 +11,7 @@ import by.grouk.callhandler.utils.template.generator.TemplateCode;
  */
 
 @Component
-@TemplateCode(1)
+@TemplateCode(2)
 public class PhoneCallTemplateGenerator extends AbstractCallTemplateGenerator {
 
     @Override

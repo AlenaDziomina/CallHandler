@@ -7,17 +7,18 @@ import org.springframework.stereotype.Service;
 
 import by.grouk.callhandler.model.PhoneCall;
 import by.grouk.callhandler.rest.PhoneCallRestService;
+import by.grouk.callhandler.rest.RestWebService;
 import by.grouk.callhandler.service.PhoneCallService;
 
 /**
  * Created by Alena_Grouk on 7/24/2016.
  */
 @Service
+@RestWebService
 public class PhoneCallRestServiceImpl implements PhoneCallRestService {
 
     @Resource
     PhoneCallService phoneCallService;
-
 
     public void addCall(PhoneCall call) {
         phoneCallService.addCall(call);

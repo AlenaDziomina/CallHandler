@@ -10,7 +10,10 @@ import org.springframework.beans.factory.annotation.Qualifier;
 /**
  * Created by Alena_Grouk on 7/22/2016.
  */
-@Target({ElementType.TYPE, ElementType.FIELD, ElementType.PARAMETER})
+@Target({ElementType.FIELD,
+        ElementType.METHOD,
+        ElementType.TYPE,
+        ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
 @Qualifier
 public @interface TemplateCode {
