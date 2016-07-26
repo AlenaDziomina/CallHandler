@@ -1,9 +1,12 @@
 package by.grouk.callhandler.rest;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Pattern;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -19,10 +22,11 @@ public interface PhoneCallRestService {
     @PUT
     @Path("/")
     @Consumes(MediaType.APPLICATION_JSON)
-    void addCall(PhoneCall phoneCall);
+    void addCall(@Valid PhoneCall phoneCall);
 
     @GET
-    @Path("/create")
+    @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    Response createCall();
+    Response createCall(@PathParam("id") @Pattern(regexp = "[0-9]+", message = "The id must be a valid number")
+            String id);
 }

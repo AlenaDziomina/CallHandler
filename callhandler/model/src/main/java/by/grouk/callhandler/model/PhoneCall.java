@@ -3,13 +3,23 @@ package by.grouk.callhandler.model;
 import java.util.Date;
 import java.util.Objects;
 
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotBlank;
+
+import by.grouk.callhandler.validation.Phone;
+
 /**
  * Phone call model
  */
 public class PhoneCall {
+    @NotNull@NotBlank
     private String firstName;
+    @NotNull@NotBlank
     private String lastName;
+    @Phone(message = "неправильный телефон")
     private String phoneNumber;
+
     private Date callDate;
 
     public String getFirstName() {

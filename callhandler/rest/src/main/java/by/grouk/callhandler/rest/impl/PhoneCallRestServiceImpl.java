@@ -1,6 +1,7 @@
 package by.grouk.callhandler.rest.impl;
 
 import javax.annotation.Resource;
+import javax.validation.Valid;
 import javax.ws.rs.core.Response;
 
 import org.springframework.stereotype.Service;
@@ -20,12 +21,14 @@ public class PhoneCallRestServiceImpl implements PhoneCallRestService {
     @Resource
     PhoneCallService phoneCallService;
 
-    public void addCall(PhoneCall call) {
+
+    public void addCall(@Valid PhoneCall call) {
         phoneCallService.addCall(call);
     }
 
-    public Response createCall() {
+    public Response createCall(String id) {
         Response response = Response.status(Response.Status.OK).entity(phoneCallService.createPhoneCall()).build();
         return response;
+        //return null;
     }
 }

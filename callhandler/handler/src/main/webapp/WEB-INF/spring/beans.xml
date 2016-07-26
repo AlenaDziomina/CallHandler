@@ -19,23 +19,48 @@
 
     <bean id="forkJoinPool" class="java.util.concurrent.ForkJoinPool"/>
 
-    <!--<bean class="by.grouk.callhandler.utils.template.TemplateGeneratorFactory">-->
-        <!--<property name="generatorMap">-->
-            <!--<map key-type="java.lang.Integer"-->
-                 <!--value-type="by.grouk.callhandler.utils.template.generator.TemplateGenerator">-->
-                <!--<entry key="1" value-ref="phoneCallTemplateGenerator"/>-->
-                <!--<entry key="2" value-ref="callbackTemplateGenerator"/>-->
-            <!--</map>-->
-        <!--</property>-->
-    <!--</bean>-->
 
 
+    <!--<jaxrs:server address="/callhandler/rest" serviceAnnotation="by.grouk.callhandler.rest.RestWebService">-->
+        <jaxrs:server address="/callhandler/rest">
+            <jaxrs:serviceBeans>
+                <bean class="by.grouk.callhandler.rest.impl.PhoneCallRestServiceImpl" />
+            </jaxrs:serviceBeans>
 
-    <jaxrs:server address="/callhandler/rest" serviceAnnotation="by.grouk.callhandler.rest.RestWebService">
-        <jaxrs:providers>
-            <bean class="com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider"/>
-        </jaxrs:providers>
-    </jaxrs:server>
+            <jaxrs:providers>
+                <ref bean="jsonProvider" />
+                <ref bean="exceptionMapper"/>
+            </jaxrs:providers>
 
+            <jaxrs:inInterceptors>
+                <ref bean="validationInInterceptor" />
+            </jaxrs:inInterceptors>
 
-</beans>
+            <jaxrs:outInterceptors>
+                <ref bean="validationOutInterceptor" />
+            </jaxrs:outInterceptors>
+
+            <jaxrs:extensionMappings>
+                <entry key="json" value="application/json" />
+            </jaxrs:extensionMappings>
+        </jaxrs:server>
+
+        <bean id="jsonProvider" class="com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider"/>
+
+        <bean id="exceptionMapper" class="org.apache.cxf.jaxrs.validation.ValidationExceptionMapper"/>
+        <bean id="validationProvider" class="org.apache.cxf.validation.BeanValidationProvider" />
+
+        <bean id="validationInInterceptor" class="org.apache.cxf.jaxrs.validation.JAXRSBeanValidationInInterceptor">
+            <property name="provider" ref="validationProvider" />
+        </bean>
+
+        <bean id="validationOutInterceptor" class="org.apache.cxf.jaxrs.validation.JAXRSBeanValidationOutInterceptor">
+            <property name="provider" ref="validationProvider" />
+        </bean>
+
+        <bean id="messageSource"
+              class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+            <property name="basename" value="messages" />
+        </bean>
+
+    </beans>

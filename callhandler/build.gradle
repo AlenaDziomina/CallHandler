@@ -23,8 +23,11 @@ subprojects {
             //jackson
             compile group: 'com.fasterxml.jackson.jaxrs', name: 'jackson-jaxrs-json-provider', version: '2.8.0'
 
-            //reflections
-            compile group: 'org.reflections', name: 'reflections', version: '0.9.10'
+            //validation
+//            compile group: 'javax.validation', name: 'validation-api', version: '1.0.0.GA'
+//            compile group: 'javax.el', name: 'javax.el-api', version: '2.2.1'
+//            compile group: 'org.apache.bval', name: 'org.apache.bval.bundle', version: '0.3-incubating'
+            compile group: 'org.hibernate', name: 'hibernate-validator', version: '5.1.3.Final'
 
             testCompile group: 'junit', name: 'junit', version: '4.11'
         }
