@@ -12,6 +12,7 @@ import by.grouk.callhandler.model.PhoneCall;
 import by.grouk.callhandler.utils.template.PhoneCallTemplateUtil;
 import by.grouk.callhandler.utils.template.TemplateGeneratorFactory;
 import by.grouk.callhandler.utils.template.generator.TemplateGenerator;
+import by.grouk.callhandler.utils.writer.FileWriter;
 
 /**
  * Created by Alena_Grouk on 7/22/2016.
@@ -26,6 +27,9 @@ public class AddPhoneCallTask extends RecursiveAction {
     @Autowired
     private PhoneCallTemplateUtil templateUtil;
 
+    @Autowired
+    private FileWriter fileWriter;
+
     private PhoneCall phoneCall;
 
     public AddPhoneCallTask(PhoneCall phoneCall) {
@@ -36,6 +40,6 @@ public class AddPhoneCallTask extends RecursiveAction {
         String templateCode = templateUtil.determineTemplateCode(phoneCall);
         TemplateGenerator templateGenerator = generatorFactory.getTemplateGenerator(templateCode);
         MessageTemplate template = templateGenerator.generateTemplate(phoneCall);
-        //todo
+        fileWriter.write(template);
     }
 }

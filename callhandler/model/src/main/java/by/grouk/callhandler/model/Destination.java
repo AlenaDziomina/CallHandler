@@ -7,6 +7,8 @@ import java.util.Objects;
  */
 public class Destination {
     private String fileName;
+    private String filePath;
+    private String charset;
 
     public String getFileName() {
         return fileName;
@@ -16,6 +18,22 @@ public class Destination {
         this.fileName = fileName;
     }
 
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
+
+    public String getCharset() {
+        return charset;
+    }
+
+    public void setCharset(String charset) {
+        this.charset = charset;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o)
@@ -23,18 +41,22 @@ public class Destination {
         if (o == null || getClass() != o.getClass())
             return false;
         Destination that = (Destination) o;
-        return Objects.equals(fileName, that.fileName);
+        return Objects.equals(fileName, that.fileName) &&
+                Objects.equals(filePath, that.filePath) &&
+                Objects.equals(charset, that.charset);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(fileName);
+        return Objects.hash(fileName, filePath, charset);
     }
 
     @Override
     public String toString() {
         return "Destination{" +
                 "fileName='" + fileName + '\'' +
+                ", filePath='" + filePath + '\'' +
+                ", charset='" + charset + '\'' +
                 '}';
     }
 }

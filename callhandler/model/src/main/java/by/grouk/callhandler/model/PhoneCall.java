@@ -13,11 +13,11 @@ import by.grouk.callhandler.validation.Phone;
  * Phone call model
  */
 public class PhoneCall {
-    @NotNull@NotBlank
+    @NotNull @NotBlank
     private String firstName;
-    @NotNull@NotBlank
+    @NotNull @NotBlank
     private String lastName;
-    @Phone(message = "неправильный телефон")
+    @Phone(message = "wrong phone number")
     private String phoneNumber;
 
     private Date callDate;
