@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import by.grouk.callhandler.dao.PhoneCallDao;
+import by.grouk.callhandler.dto.PhoneCallDto;
 import by.grouk.callhandler.model.PhoneCall;
 import by.grouk.callhandler.service.PhoneCallService;
 
@@ -14,13 +15,20 @@ import by.grouk.callhandler.service.PhoneCallService;
  * Created by Alena_Grouk on 7/22/2016.
  */
 @Service
-public class PhoneCallServiceImpl implements PhoneCallService {
+public class PhoneCallServiceImpl extends AbstractService implements PhoneCallService {
 
     @Resource
     private PhoneCallDao phoneCallDao;
 
-    public void addCall(PhoneCall call) {
-        phoneCallDao.addCall(call);
+    public void addCall(PhoneCallDto call) {
+        try {
+            PhoneCall phoneCall = (PhoneCall) convert(null, call, PhoneCall.class);
+            phoneCallDao.addCall(phoneCall);
+            PhoneCallDto dto = (PhoneCallDto) convert(null, call, PhoneCallDto.class);
+            System.out.println(dto);
+        } catch (Exception e) {
+
+        }
     }
 
     @Override

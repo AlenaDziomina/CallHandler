@@ -2,7 +2,8 @@ package by.grouk.callhandler.utils.task;
 
 import java.util.concurrent.RecursiveAction;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
+
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
@@ -21,13 +22,13 @@ import by.grouk.callhandler.utils.writer.FileWriter;
 @Scope(value="prototype", proxyMode = ScopedProxyMode.INTERFACES)
 public class AddPhoneCallTask extends RecursiveAction {
 
-    @Autowired
+    @Resource
     private TemplateGeneratorFactory generatorFactory;
 
-    @Autowired
+    @Resource
     private PhoneCallTemplateUtil templateUtil;
 
-    @Autowired
+    @Resource
     private FileWriter fileWriter;
 
     private PhoneCall phoneCall;
@@ -37,8 +38,8 @@ public class AddPhoneCallTask extends RecursiveAction {
     }
 
     @Override protected void compute() {
-        String templateCode = templateUtil.determineTemplateCode(phoneCall);
-        TemplateGenerator templateGenerator = generatorFactory.getTemplateGenerator(templateCode);
+        String generatorName = templateUtil.determineTemplateCode(phoneCall);
+        TemplateGenerator templateGenerator = generatorFactory.getTemplateGenerator(generatorName);
         MessageTemplate template = templateGenerator.generateTemplate(phoneCall);
         fileWriter.write(template);
     }

@@ -1,17 +1,23 @@
-package by.grouk.callhandler.model;
+package by.grouk.callhandler.dto;
 
-import java.util.Date;
 import java.util.Objects;
 
-/**
- * Phone call model
- */
-public class PhoneCall {
+import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.NotBlank;
+
+import by.grouk.callhandler.validation.Phone;
+
+/**
+ * Created by Alena_Grouk on 7/29/2016.
+ */
+public class PhoneCallDto {
+    @NotNull @NotBlank
     private String firstName;
+    @NotNull @NotBlank
     private String lastName;
+    @Phone(message = "wrong phone number")
     private String phoneNumber;
-    private Date callDate;
 
     public String getFirstName() {
         return firstName;
@@ -37,36 +43,29 @@ public class PhoneCall {
         this.phoneNumber = phoneNumber;
     }
 
-    public Date getCallDate() {
-        return callDate;
-    }
-
-    public void setCallDate(Date callDate) {
-        this.callDate = callDate;
-    }
-
-    @Override public boolean equals(Object o) {
+    @Override
+    public boolean equals(Object o) {
         if (this == o)
             return true;
         if (o == null || getClass() != o.getClass())
             return false;
-        PhoneCall phoneCall = (PhoneCall) o;
-        return Objects.equals(firstName, phoneCall.firstName) &&
-                Objects.equals(lastName, phoneCall.lastName) &&
-                Objects.equals(phoneNumber, phoneCall.phoneNumber) &&
-                Objects.equals(callDate, phoneCall.callDate);
+        PhoneCallDto that = (PhoneCallDto) o;
+        return Objects.equals(firstName, that.firstName) &&
+                Objects.equals(lastName, that.lastName) &&
+                Objects.equals(phoneNumber, that.phoneNumber);
     }
 
-    @Override public int hashCode() {
-        return Objects.hash(firstName, lastName, phoneNumber, callDate);
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName, lastName, phoneNumber);
     }
 
-    @Override public String toString() {
-        return "PhoneCall{" +
+    @Override
+    public String toString() {
+        return "PhoneCallDto{" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
-                ", callDate=" + callDate +
                 '}';
     }
 }

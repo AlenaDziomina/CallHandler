@@ -11,7 +11,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import by.grouk.callhandler.model.PhoneCall;
+import by.grouk.callhandler.dto.PhoneCallDto;
 
 /**
  * Created by Alena_Grouk on 7/24/2016.
@@ -22,7 +22,7 @@ public interface PhoneCallRestService {
     @PUT
     @Path("/")
     @Consumes(MediaType.APPLICATION_JSON)
-    void addCall(@Valid PhoneCall phoneCall);
+    void addCall(@Valid PhoneCallDto phoneCall);
 
     @GET
     @Path("/{id}")
