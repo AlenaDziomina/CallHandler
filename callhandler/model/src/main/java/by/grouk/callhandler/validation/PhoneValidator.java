@@ -3,10 +3,15 @@ package by.grouk.callhandler.validation;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
+import org.springframework.beans.factory.annotation.Value;
+
 /**
  * Created by Alena_Grouk on 7/26/2016.
  */
 public class PhoneValidator implements ConstraintValidator<Phone, String> {
+
+    @Value("#{config['phonecall.code']}")
+    private String code;
 
     @Override
     public void initialize(Phone paramA) {
@@ -17,16 +22,13 @@ public class PhoneValidator implements ConstraintValidator<Phone, String> {
         if(phoneNo == null){
             return false;
         }
-        //validate phone numbers of format "1234567890"
-        if (phoneNo.matches("\\d{10}")) return true;
-            //validating phone number with -, . or spaces
-        else if(phoneNo.matches("\\d{3}[-\\.\\s]\\d{3}[-\\.\\s]\\d{4}")) return true;
-            //validating phone number with extension length from 3 to 5
-        else if(phoneNo.matches("\\d{3}-\\d{3}-\\d{4}\\s(x|(ext))\\d{3,5}")) return true;
-            //validating phone number where area code is in braces ()
-        else if(phoneNo.matches("\\(\\d{3}\\)-\\d{3}-\\d{4}")) return true;
-            //return false if nothing matches the input
-        else return false;
+
+        return phoneNo.matches("\\d{9}")
+                || phoneNo.matches("\\+\\(" + code + "\\) \\d{3} \\d{3} \\d{3}") //+(420) 111 222 333
+                || phoneNo.matches("\\+\\(" + code + "\\)-\\d{9}")  //+(420)-111222333
+                || phoneNo.matches("\\+" + code + "\\d{9}")         //+420111222333
+                || phoneNo.matches("0{2}" + code + "\\d{9}")        //00420111222333
+                || phoneNo.matches("\\(\\d{3}\\) \\d{3} \\(\\d{3}\\)"); //(111) 222 (333)
     }
 
 }

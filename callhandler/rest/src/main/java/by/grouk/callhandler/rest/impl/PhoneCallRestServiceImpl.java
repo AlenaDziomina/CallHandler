@@ -19,8 +19,7 @@ import by.grouk.callhandler.service.PhoneCallService;
 public class PhoneCallRestServiceImpl implements PhoneCallRestService {
 
     @Resource
-    PhoneCallService phoneCallService;
-
+    private PhoneCallService phoneCallService;
 
     public void addCall(@Valid PhoneCallDto call) {
         phoneCallService.addCall(call);
