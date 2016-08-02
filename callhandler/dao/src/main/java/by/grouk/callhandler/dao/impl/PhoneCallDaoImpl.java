@@ -19,6 +19,5 @@ public class PhoneCallDaoImpl implements PhoneCallDao {
 
     public void addCall(PhoneCall call) {
         manager.runTask(call);
-        //todo
     }
 }

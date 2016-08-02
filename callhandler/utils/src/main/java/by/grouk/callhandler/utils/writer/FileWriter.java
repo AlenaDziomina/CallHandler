@@ -7,10 +7,12 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.concurrent.locks.Lock;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Component;
 
 import by.grouk.callhandler.model.MessageTemplate;
+import by.grouk.callhandler.utils.exception.processing.factory.ExceptionFactory;
 
 /**
  * Created by Alena_Grouk on 7/28/2016.
@@ -18,8 +20,11 @@ import by.grouk.callhandler.model.MessageTemplate;
 @Component
 public class FileWriter {
 
-    @Autowired
+    @Resource
     private LockPool<String> fileLockPool;
+
+    @Resource
+    private ExceptionFactory exceptionFactory;
 
     public void write(MessageTemplate template) {
         String name = template.getDestination().getFileName();
@@ -38,7 +43,7 @@ public class FileWriter {
                 Files.write(path, msg.getBytes(charsetName), StandardOpenOption.APPEND);
             }
         } catch (IOException e) {
-            System.out.println("Error in writing file");
+            throw exceptionFactory.createInternalException(e);
         } finally {
             lock.unlock();
         }

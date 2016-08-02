@@ -23,6 +23,14 @@
 
     <bean id="forkJoinPool" class="java.util.concurrent.ForkJoinPool"/>
 
+    <bean id="error_strings" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basenames">
+            <list>
+                <value>error_strings</value>
+            </list>
+        </property>
+    </bean>
+
 
     <!--<jaxrs:server address="/callhandler/rest" serviceAnnotation="by.grouk.callhandler.rest.RestWebService">-->
         <jaxrs:server address="/callhandler/rest">
@@ -33,6 +41,7 @@
             <jaxrs:providers>
                 <ref bean="jsonProvider" />
                 <ref bean="exceptionMapper"/>
+                <ref bean="exceptionHandler"/>
             </jaxrs:providers>
 
             <jaxrs:inInterceptors>
@@ -49,6 +58,7 @@
         </jaxrs:server>
 
         <bean id="jsonProvider" class="com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider"/>
+        <bean id="exceptionHandler" class="by.grouk.callhandler.utils.exception.handler.ExceptionHandler"/>
 
         <bean id="exceptionMapper" class="org.apache.cxf.jaxrs.validation.ValidationExceptionMapper"/>
         <bean id="validationProvider" class="org.apache.cxf.validation.BeanValidationProvider" />

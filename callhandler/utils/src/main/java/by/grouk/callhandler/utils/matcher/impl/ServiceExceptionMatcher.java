@@ -2,7 +2,7 @@ package by.grouk.callhandler.utils.matcher.impl;
 
 import java.util.Properties;
 
-import by.grouk.callhandler.utils.exception.ServiceException;
+import by.grouk.callhandler.utils.exception.impl.ServiceException;
 import by.grouk.callhandler.utils.matcher.Matcher;
 import by.grouk.callhandler.utils.matcher.MatcherComponent;
 

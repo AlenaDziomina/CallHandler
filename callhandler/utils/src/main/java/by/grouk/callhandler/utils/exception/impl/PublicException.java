@@ -1,6 +1,8 @@
-package by.grouk.callhandler.utils.exception;
+package by.grouk.callhandler.utils.exception.impl;
 
 import java.util.Map;
+
+import by.grouk.callhandler.utils.exception.ExceptionConstants;
 
 /**
  * Created by Alena_Grouk on 7/29/2016.

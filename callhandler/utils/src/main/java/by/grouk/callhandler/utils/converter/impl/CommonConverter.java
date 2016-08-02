@@ -19,9 +19,6 @@ public class CommonConverter extends AbstractConverter {
     @Override
     protected Injector selectInjector(Class<?> srcType, Class<?> destType) {
         Injector injector = converterRepository.getInjector(srcType, destType);
-        if (injector == null) {
-            throw new RuntimeException(); //todo
-        }
         return injector;
     }
 }

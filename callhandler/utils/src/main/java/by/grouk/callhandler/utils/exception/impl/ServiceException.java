@@ -1,4 +1,4 @@
-package by.grouk.callhandler.utils.exception;
+package by.grouk.callhandler.utils.exception.impl;
 
 /**
  * Created by Alena_Grouk on 7/29/2016.

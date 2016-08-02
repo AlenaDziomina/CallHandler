@@ -21,14 +21,8 @@ public class PhoneCallServiceImpl extends AbstractService implements PhoneCallSe
     private PhoneCallDao phoneCallDao;
 
     public void addCall(PhoneCallDto call) {
-        try {
-            PhoneCall phoneCall = (PhoneCall) convert(null, call, PhoneCall.class);
-            phoneCallDao.addCall(phoneCall);
-            PhoneCallDto dto = (PhoneCallDto) convert(null, call, PhoneCallDto.class);
-            System.out.println(dto);
-        } catch (Exception e) {
-
-        }
+        PhoneCall phoneCall = (PhoneCall) convert(null, call, PhoneCall.class);
+        phoneCallDao.addCall(phoneCall);
     }
 
     @Override
