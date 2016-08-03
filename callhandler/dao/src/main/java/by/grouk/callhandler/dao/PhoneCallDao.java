@@ -7,4 +7,5 @@ import by.grouk.callhandler.model.PhoneCall;
  */
 public interface PhoneCallDao {
     void addCall(PhoneCall call);
+    PhoneCall getPhoneCall();
 }

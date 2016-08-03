@@ -1,21 +1,20 @@
 package by.grouk.callhandler.rest.impl;
 
-import by.grouk.callhandler.dto.PhoneCallDto;
-import by.grouk.callhandler.rest.PhoneCallRestService;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import javax.ws.rs.core.Response;
+import by.grouk.callhandler.dto.PhoneCallDto;
+import by.grouk.callhandler.rest.PhoneCallRestService;
+
+//import org.springframework.test.context.ContextConfiguration;
+//import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  * Created by Alena on 02.08.2016.
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:testAppContext.xml"})
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@ContextConfiguration(locations = {"classpath:testAppContext.xml"})
 public class PhoneCallRestServiceImplValidationTest {
     @Autowired
     @Qualifier("testclient")

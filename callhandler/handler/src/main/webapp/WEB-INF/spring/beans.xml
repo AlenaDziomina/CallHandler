@@ -4,13 +4,16 @@
        xmlns:jaxrs="http://cxf.apache.org/jaxrs"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context-4.1.xsd
     http://cxf.apache.org/jaxrs
     http://cxf.apache.org/schemas/jaxrs.xsd http://www.springframework.org/schema/util
-    http://www.springframework.org/schema/util/spring-util.xsd">
+    http://www.springframework.org/schema/util/spring-util.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <import resource="classpath:META-INF/cxf/cxf-servlet.xml"/>
     <import resource="classpath:META-INF/cxf/cxf.xml"/>
@@ -18,6 +21,8 @@
     <context:annotation-config />
 
     <context:component-scan base-package="by.grouk.callhandler"/>
+
+    <aop:aspectj-autoproxy />
 
     <util:properties id="config" location="classpath:config.properties"/>
 
@@ -42,6 +47,7 @@
                 <ref bean="jsonProvider" />
                 <ref bean="exceptionMapper"/>
                 <ref bean="exceptionHandler"/>
+                <ref bean="publicExceptionHandler"/>
             </jaxrs:providers>
 
             <jaxrs:inInterceptors>
@@ -59,6 +65,7 @@
 
         <bean id="jsonProvider" class="com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider"/>
         <bean id="exceptionHandler" class="by.grouk.callhandler.utils.exception.handler.ExceptionHandler"/>
+        <bean id="publicExceptionHandler" class="by.grouk.callhandler.utils.exception.handler.PublicExceptionHandler"/>
 
         <!--<bean id="exceptionMapper" class="org.apache.cxf.jaxrs.validation.ValidationExceptionMapper"/>-->
         <bean id="exceptionMapper" class="by.grouk.callhandler.utils.exception.handler.ValidationExceptionHandler"/>
@@ -76,5 +83,13 @@
               class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
             <property name="basename" value="messages" />
         </bean>
+
+    <bean id="loggingDaoAspect" class="by.grouk.callhandler.dao.aspect.LoggingDaoAspect"/>
+    <bean id="loggingServiceAspect" class="by.grouk.callhandler.service.aspect.LoggingServiceAspect"/>
+    <bean id="loggingRestServiceAspect" class="by.grouk.callhandler.rest.aspect.LoggingRestServicesAspect"/>
+    <bean id="loggingConverterAspect" class="by.grouk.callhandler.utils.aspect.LoggingConverterAspect"/>
+    <bean id="loggingLocalizationAspect" class="by.grouk.callhandler.utils.aspect.LoggingLocalizationAspect"/>
+    <bean id="loggingTemplateGeneratorAspect" class="by.grouk.callhandler.utils.aspect.LoggingTemplateGeneratorAspect"/>
+    <bean id="loggingWriterAspect" class="by.grouk.callhandler.utils.aspect.LoggingWriterAspect"/>
 
     </beans>

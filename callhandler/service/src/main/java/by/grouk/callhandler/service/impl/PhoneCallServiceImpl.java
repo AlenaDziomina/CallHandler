@@ -1,7 +1,5 @@
 package by.grouk.callhandler.service.impl;
 
-import java.util.Date;
-
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -26,12 +24,9 @@ public class PhoneCallServiceImpl extends AbstractService implements PhoneCallSe
     }
 
     @Override
-    public PhoneCall createPhoneCall() {
-        PhoneCall phoneCall = new PhoneCall();
-        phoneCall.setFirstName("firstName");
-        phoneCall.setLastName("lastName");
-        phoneCall.setPhoneNumber("123456789");
-        phoneCall.setCallDate(new Date());
-        return phoneCall;
+    public PhoneCallDto createPhoneCall() {
+        PhoneCall phoneCall = phoneCallDao.getPhoneCall();
+        PhoneCallDto phoneCallDto = (PhoneCallDto) convert(null, phoneCall, PhoneCallDto.class);
+        return phoneCallDto;
     }
 }

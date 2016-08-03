@@ -14,7 +14,6 @@ import org.powermock.api.support.membermodification.MemberModifier;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import by.grouk.callhandler.dto.PhoneCallDto;
-import by.grouk.callhandler.model.PhoneCall;
 import by.grouk.callhandler.service.PhoneCallService;
 
 /**
@@ -42,7 +41,7 @@ public class PhoneCallRestServiceImplTest {
 
     @Test
     public void createCall() throws Exception {
-        PhoneCall phoneCall = mock(PhoneCall.class);
+        PhoneCallDto phoneCall = mock(PhoneCallDto.class);
         when(phoneCallService.createPhoneCall()).thenReturn(phoneCall);
         Response response = restService.createCall("1");
         verify(phoneCallService).createPhoneCall();

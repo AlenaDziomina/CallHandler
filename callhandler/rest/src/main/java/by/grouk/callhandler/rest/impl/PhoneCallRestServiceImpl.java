@@ -25,7 +25,7 @@ public class PhoneCallRestServiceImpl implements PhoneCallRestService {
         phoneCallService.addCall(call);
     }
 
-    public Response createCall(String id) {
+    public Response createCall() {
         return Response.status(Response.Status.OK).entity(phoneCallService.createPhoneCall()).build();
     }
 }
