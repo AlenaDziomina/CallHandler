@@ -60,7 +60,8 @@
         <bean id="jsonProvider" class="com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider"/>
         <bean id="exceptionHandler" class="by.grouk.callhandler.utils.exception.handler.ExceptionHandler"/>
 
-        <bean id="exceptionMapper" class="org.apache.cxf.jaxrs.validation.ValidationExceptionMapper"/>
+        <!--<bean id="exceptionMapper" class="org.apache.cxf.jaxrs.validation.ValidationExceptionMapper"/>-->
+        <bean id="exceptionMapper" class="by.grouk.callhandler.utils.exception.handler.ValidationExceptionHandler"/>
         <bean id="validationProvider" class="org.apache.cxf.validation.BeanValidationProvider" />
 
         <bean id="validationInInterceptor" class="org.apache.cxf.jaxrs.validation.JAXRSBeanValidationInInterceptor">

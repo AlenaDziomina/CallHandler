@@ -12,11 +12,13 @@ import by.grouk.callhandler.validation.Phone;
  * Created by Alena_Grouk on 7/29/2016.
  */
 public class PhoneCallDto {
-    @NotNull @NotBlank
+    @NotNull(message = "validation.message.not_null")
+    @NotBlank(message = "validation.message.not_empty")
     private String firstName;
-    @NotNull @NotBlank
+    @NotNull(message = "validation.message.not_null")
+    @NotBlank(message = "validation.message.not_empty")
     private String lastName;
-    @Phone(message = "wrong phone number")
+    @Phone(message = "validation.message.phone_number")
     private String phoneNumber;
 
     public String getFirstName() {

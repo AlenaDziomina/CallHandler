@@ -23,7 +23,7 @@ public class PhoneValidator implements ConstraintValidator<Phone, String> {
             return false;
         }
 
-        return phoneNo.matches("\\d{9}")
+        return phoneNo.matches("\\d{9}") //123456789
                 || phoneNo.matches("\\+\\(" + code + "\\) \\d{3} \\d{3} \\d{3}") //+(420) 111 222 333
                 || phoneNo.matches("\\+\\(" + code + "\\)-\\d{9}")  //+(420)-111222333
                 || phoneNo.matches("\\+" + code + "\\d{9}")         //+420111222333

@@ -1,15 +1,12 @@
 package by.grouk.callhandler.utils.exception.processing.factory;
 
-import java.util.Locale;
-
 import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Lookup;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 
 import by.grouk.callhandler.utils.exception.processing.ServiceProcessingException;
+import by.grouk.callhandler.utils.localization.MessageLocalizator;
 
 /**
  * Created by Alena_Grouk on 8/2/2016.
@@ -17,11 +14,8 @@ import by.grouk.callhandler.utils.exception.processing.ServiceProcessingExceptio
 @Component
 public class ExceptionFactory {
 
-    @Resource(name = "error_strings")
-    private MessageSource messageSource;
-
-    @Value("#{config['language']}")
-    private String language;
+    @Resource
+    MessageLocalizator localizator;
 
     public static final int INTERNAL_ERROR = 400;
     public static final int INVALID_NULL_OBJECT = 401;
@@ -55,11 +49,7 @@ public class ExceptionFactory {
         return spe;
     }
 
-    protected Locale getLocale() {
-        return new Locale(language);
-    }
-
     protected String getMessage(String msgCode, Object[] args) {
-        return messageSource.getMessage(msgCode, args, getLocale());
+        return localizator.localizeMessage(msgCode, args);
     }
 }
