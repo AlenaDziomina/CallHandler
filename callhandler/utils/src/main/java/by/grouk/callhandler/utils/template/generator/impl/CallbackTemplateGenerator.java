@@ -2,7 +2,6 @@ package by.grouk.callhandler.utils.template.generator.impl;
 
 import org.springframework.stereotype.Component;
 
-import by.grouk.callhandler.model.Content;
 import by.grouk.callhandler.model.PhoneCall;
 import by.grouk.callhandler.utils.template.TemplateConstants;
 import by.grouk.callhandler.utils.template.generator.TemplateCode;
@@ -16,10 +15,10 @@ import by.grouk.callhandler.utils.template.generator.TemplateCode;
 public class CallbackTemplateGenerator extends AbstractCallTemplateGenerator {
 
     @Override
-    protected Content defineContent(PhoneCall phoneCall) {
-        String message = phoneCall.getCallDate().toString() + TemplateConstants.CALLBACK;
-        Content content = new Content();
-        content.setMessage(message);
-        return content;
+    protected String generateMessage(PhoneCall phoneCall) {
+        StringBuilder message = new StringBuilder(phoneCall.getCallDate().toString())
+                .append(separator)
+                .append(TemplateConstants.CALLBACK);
+        return message.toString();
     }
 }

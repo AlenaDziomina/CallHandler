@@ -26,9 +26,9 @@ public class PhoneCallTemplateUtil {
     public String determineTemplateCode(PhoneCall call) {
         int code;
         if (call.getPhoneNumber().startsWith("0")){
-            code = 2;
-        } else {
             code = 1;
+        } else {
+            code = 2;
         }
         return codeMap.get(code);
     }

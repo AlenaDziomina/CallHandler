@@ -17,10 +17,7 @@ public class TemplateGeneratorFactory {
     @Resource
     private Map<String, TemplateGenerator> generatorMap;
 
-    public TemplateGenerator getTemplateGenerator(String templateCode){
-        if (generatorMap != null) {
-            return generatorMap.get(templateCode);
-        }
-        return null;
+    public TemplateGenerator getTemplateGenerator(String generatorName){
+        return generatorMap.get(generatorName);
     }
 }

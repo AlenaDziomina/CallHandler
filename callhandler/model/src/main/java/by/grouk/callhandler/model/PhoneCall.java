@@ -7,6 +7,7 @@ import java.util.Objects;
  * Phone call model
  */
 public class PhoneCall {
+
     private String firstName;
     private String lastName;
     private String phoneNumber;

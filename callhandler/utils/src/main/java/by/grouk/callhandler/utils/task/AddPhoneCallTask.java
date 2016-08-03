@@ -2,7 +2,8 @@ package by.grouk.callhandler.utils.task;
 
 import java.util.concurrent.RecursiveAction;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
+
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
@@ -12,6 +13,7 @@ import by.grouk.callhandler.model.PhoneCall;
 import by.grouk.callhandler.utils.template.PhoneCallTemplateUtil;
 import by.grouk.callhandler.utils.template.TemplateGeneratorFactory;
 import by.grouk.callhandler.utils.template.generator.TemplateGenerator;
+import by.grouk.callhandler.utils.writer.FileWriter;
 
 /**
  * Created by Alena_Grouk on 7/22/2016.
@@ -20,11 +22,14 @@ import by.grouk.callhandler.utils.template.generator.TemplateGenerator;
 @Scope(value="prototype", proxyMode = ScopedProxyMode.INTERFACES)
 public class AddPhoneCallTask extends RecursiveAction {
 
-    @Autowired
+    @Resource
     private TemplateGeneratorFactory generatorFactory;
 
-    @Autowired
+    @Resource
     private PhoneCallTemplateUtil templateUtil;
+
+    @Resource
+    private FileWriter fileWriter;
 
     private PhoneCall phoneCall;
 
@@ -33,9 +38,9 @@ public class AddPhoneCallTask extends RecursiveAction {
     }
 
     @Override protected void compute() {
-        String templateCode = templateUtil.determineTemplateCode(phoneCall);
-        TemplateGenerator templateGenerator = generatorFactory.getTemplateGenerator(templateCode);
+        String generatorName = templateUtil.determineTemplateCode(phoneCall);
+        TemplateGenerator templateGenerator = generatorFactory.getTemplateGenerator(generatorName);
         MessageTemplate template = templateGenerator.generateTemplate(phoneCall);
-        //todo
+        fileWriter.write(template);
     }
 }

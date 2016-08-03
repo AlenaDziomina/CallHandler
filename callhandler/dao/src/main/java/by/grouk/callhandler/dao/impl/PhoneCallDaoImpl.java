@@ -1,5 +1,7 @@
 package by.grouk.callhandler.dao.impl;
 
+import java.util.Date;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Repository;
@@ -19,6 +21,15 @@ public class PhoneCallDaoImpl implements PhoneCallDao {
 
     public void addCall(PhoneCall call) {
         manager.runTask(call);
-        //todo
+    }
+
+    @Override
+    public PhoneCall getPhoneCall() {
+        PhoneCall phoneCall = new PhoneCall();
+        phoneCall.setFirstName("firstName");
+        phoneCall.setLastName("lastName");
+        phoneCall.setPhoneNumber("123456789");
+        phoneCall.setCallDate(new Date());
+        return phoneCall;
     }
 }
