@@ -30,7 +30,7 @@ public class PhoneCallServiceImpl extends AbstractService implements PhoneCallSe
         PhoneCall phoneCall = new PhoneCall();
         phoneCall.setFirstName("firstName");
         phoneCall.setLastName("lastName");
-        phoneCall.setPhoneNumber("555-55-55");
+        phoneCall.setPhoneNumber("123456789");
         phoneCall.setCallDate(new Date());
         return phoneCall;
     }
